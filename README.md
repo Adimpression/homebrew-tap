@@ -11,10 +11,9 @@ bd commits nothing, writes nothing for agents, configures no remote, and keeps
 `.beads/` local to the checkout through `.git/info/exclude`. What init leaves
 behind is dotdiw's own declaration of where work starts, in `CLAUDE.md` and
 `AGENTS.md`, named as yours to commit; the command it prints leaves the tree
-clean. That mode existed in bd all along. 0.2.0 and 0.2.1 were built around
-bd's default instead, letting bd commit its files and then repairing one of
-them, which left `.beads/config.yaml` modified and unexplained in every
-repository adopted with a remote. That was dotdiw's oversight, not bd's.
+clean. 0.2.0 and 0.2.1 used bd's default init and removed the sync remote
+afterwards, which left `.beads/config.yaml` modified in every repository
+adopted with a remote.
 
 A repository adopted by 0.2.x keeps working. On `init`, `check`, `doctor` and
 `lint` it is told the one command that keeps the tracker local from here on:
