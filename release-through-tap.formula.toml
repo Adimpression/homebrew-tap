@@ -7,15 +7,24 @@ examples = [
   "Update the url and the sha256 for the release",
   "Release through the tap",
 ]
-version = 2
+version = 3
 type = "workflow"
 
 # The order here is not cosmetic. A tap has no staging: Homebrew reads the
 # formula off the default branch of this repo, so the push is the release. Every
 # check therefore belongs before the commit, not after it.
+# A release changes what the tool does and therefore what it promises. dotdiw
+# writes its promise down (product.yaml, praxis.yaml, poa/, contracts/) and has
+# a formula that re-derives and checks all of it against the program; it runs
+# before the tag exists, because after the tag there is nothing to fix.
+[[steps]]
+id = "promise"
+title = "In the tool's own repository, run its promise check before anything is tagged -- for dotdiw: `dotdiw mol pour mol-check-promise-artifacts` and follow it through, both test suites included -- and amend the model, the IDL patches or the README where the release changed what the tool does"
+
 [[steps]]
 id = "tag"
 title = "Confirm the tag you are shipping from exists upstream and is immutable -- a formula pointed at a branch installs something different every time it is run"
+needs = ["promise"]
 
 # Written from the dotdiw repo's own history: a formula was committed carrying a
 # placeholder checksum because the tag did not exist yet, and a second commit was
