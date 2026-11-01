@@ -1,0 +1,61 @@
+formula = "mol-release-through-tap"
+description = "Ship a new version of a tool through this tap: confirm the tag it ships from, compute the tarball's checksum rather than copying one, bump the url and the sha256 in the same edit, audit and install the formula from the working copy before anything is published, then commit and push to main -- which is what every machine that has tapped this repo reads, the moment it lands. Use when a new version has been tagged upstream, when bumping a formula, when updating a url or a sha256, or when a release needs to reach brew install."
+examples = [
+  "Ship a new dotdiw version through this tap",
+  "Bump the formula to the new version",
+  "A new version is tagged -- get it into brew",
+  "Update the url and the sha256 for the release",
+  "Release through the tap",
+]
+version = 1
+type = "workflow"
+
+# The order here is not cosmetic. A tap has no staging: Homebrew reads the
+# formula off the default branch of this repo, so the push is the release. Every
+# check therefore belongs before the commit, not after it.
+[[steps]]
+id = "tag"
+title = "Confirm the tag you are shipping from exists upstream and is immutable -- a formula pointed at a branch installs something different every time it is run"
+
+# Written from the dotdiw repo's own history: a formula was committed carrying a
+# placeholder checksum because the tag did not exist yet, and a second commit was
+# needed to fill it in once it did. Compute it, never carry one over.
+[[steps]]
+id = "tarball"
+title = "Download that tag's tarball and compute its sha256 yourself, rather than taking a checksum from a release note, an older formula or anywhere else"
+needs = ["tag"]
+
+[[steps]]
+id = "edit"
+title = "Change the url and the sha256 in one edit, together with any dependency that moved -- a url bumped without its checksum installs the wrong tarball or refuses to install at all"
+needs = ["tarball"]
+
+[[steps]]
+id = "audit"
+title = "Run `brew audit --strict --online --formula ./Formula/<name>.rb` and fix what it reports"
+needs = ["edit"]
+
+[[steps]]
+id = "install"
+title = "Uninstall any existing copy and install from the local file, not through the tap, so that what you are testing is this working copy"
+needs = ["edit"]
+
+[[steps]]
+id = "test"
+title = "Run `brew test <name>`, then run the tool itself out of the keg -- the test block proves the formula builds, not that the thing works"
+needs = ["install"]
+
+[[steps]]
+id = "commit"
+title = "Commit the formula, with the version it now ships and the checksum's provenance in the message"
+needs = ["audit", "test"]
+
+[[steps]]
+id = "push"
+title = "Push to main, and understand that this is the publication: there is no review between this push and `brew upgrade` on someone else's machine"
+needs = ["commit"]
+
+[[steps]]
+id = "verify"
+title = "From a clean state, install through the tap itself rather than the local file, to prove the published path works and not just the copy on your disk"
+needs = ["push"]

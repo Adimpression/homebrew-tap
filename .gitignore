@@ -54,3 +54,24 @@ build-iPhoneSimulator/
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+*.gate.lock*
+
+# Agent tool integrations -- dotdiw init / bd setup regenerate these unasked,
+# and a Homebrew tap is cloned onto other people's machines by brew. Ignored so
+# they stay local to whoever adopted the repo.
+.agents/
+.claude/
+.codex/
+.cursor/
+
+# Per-checkout beads state: the database, and the git hooks bd installs.
+.beads/embeddeddolt/
+.beads/hooks/
+.beads/last-touched
+.beads/backup/
