@@ -4,6 +4,27 @@
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 0.4.0
+
+The tracker's state leaves the repository. `dotdiw init` writes one line into
+the checkout's own `.git/config`, `dotdiw.workspace`, and runs bd under
+`~/.dotdiw/<key>/`; every dotdiw command tells bd where through `BEADS_DIR`.
+The repository holds only the formulas and the declaration in `CLAUDE.md` and
+`AGENTS.md`. The key survives a move and worktrees share it; a fresh clone has
+none, so it runs `dotdiw init` once, and `create` says so until it has. A plain
+`bd` typed in the repository finds no tracker; everything goes through dotdiw.
+
+If you adopted a repository with an earlier version: close your tasks before
+upgrading, because the task history is not carried over. After
+`brew upgrade dotdiw`, the first dotdiw command adopts the checkout under your
+home with the same prefix, says so once, and names the one command that removes
+the unused `.beads/` from the tree:
+
+    git rm -r -q .beads && git commit -m "Remove the tracker's files from the repository" && rm -rf .beads .beads.gate.lock
+
+where it was committed, and `rm -rf .beads .beads.gate.lock` where it was not.
+dotdiw runs neither, and never edits the old copy.
+
 ## dotdiw 0.3.0
 
 `dotdiw init` now runs bd in its stealth mode, `bd init --stealth --skip-hooks`.
