@@ -4,6 +4,32 @@
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 0.3.0
+
+`dotdiw init` now runs bd in its stealth mode, `bd init --stealth --skip-hooks`.
+bd commits nothing, writes nothing for agents, configures no remote, and keeps
+`.beads/` local to the checkout through `.git/info/exclude`. What init leaves
+behind is dotdiw's own declaration of where work starts, in `CLAUDE.md` and
+`AGENTS.md`, named as yours to commit; the command it prints leaves the tree
+clean. That mode existed in bd all along. 0.2.0 and 0.2.1 were built around
+bd's default instead, letting bd commit its files and then repairing one of
+them, which left `.beads/config.yaml` modified and unexplained in every
+repository adopted with a remote. That was dotdiw's oversight, not bd's.
+
+A repository adopted by 0.2.x keeps working. On `init`, `check`, `doctor` and
+`lint` it is told the one command that keeps the tracker local from here on:
+
+    git rm -r --cached .beads && git commit -m "Keep the tracker local to each checkout"
+
+dotdiw never runs it. Nothing is deleted; the files stay on disk, excluded.
+Clones that pull that commit run `dotdiw init` once, which was always needed
+-- bd's database was never in git -- and is now said when `create` finds no
+database. Outside a git repository, `init` refuses.
+
+Also new: an opt-in local witness log (`DOTDIW_WITNESS=1`), never
+transmitted, and the records that write dotdiw's promise down and bind the
+program to it; see the repository's README.
+
 ## dotdiw 0.2.1
 
 `dotdiw init` used to pass straight through to `bd init` and inherit, without
