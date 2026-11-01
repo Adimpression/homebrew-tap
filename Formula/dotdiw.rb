@@ -5,10 +5,10 @@ class Dotdiw < Formula
   homepage "https://github.com/Adimpression/dotdiw"
   # Verified 2026-11-01 from this working copy: brew fetched the tarball
   # against this sha256, `brew test` passed, the shebang was rewritten to the
-  # keg's python@3.12, and `dotdiw check` ran from the keg against a real
-  # project.
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "eb34482d44f2f90a056b3ceefdad6e58992fcb6721ae496381162ec8b1152aa9"
+  # keg's python@3.12, and the keg's dotdiw turned bd's metrics off on a fresh
+  # HOME without bd queueing an event.
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v0.2.1.tar.gz"
+  sha256 "87be0822cfe96ff78125c8c59221da9344ae4de816c76df83b7f6b8d02bc29f3"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 

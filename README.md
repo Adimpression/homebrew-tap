@@ -4,19 +4,21 @@
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
-## dotdiw 0.2.0
+## dotdiw 0.2.1
 
 `dotdiw init` used to pass straight through to `bd init` and inherit, without
 saying so, a `core.hooksPath` override aimed at `.beads/hooks` and a Dolt remote
-aimed at the repository's git remote. 0.2.0 declines both at `init`. In a
+aimed at the repository's git remote. Since 0.2.0 `init` declines both. In a
 repository where an earlier version already left them, it undoes both on its
 next invocation -- any command -- and prints what it undid. `init` also names
 the files it edited after bd committed them, so they can be committed.
 
-Not in 0.2.0: beads ships telemetry enabled, and 0.2.0 leaves that setting
-alone. The next release turns it off; until then it is `metrics.disabled: true`
-in `~/.config/bd/config.yaml`. Nothing already pushed into a repository's
-history is touched by any version.
+beads ships anonymous usage metrics on. 0.2.1 turns them off before it runs any
+bd command, on every run, and says so the first time: `bd metrics off`, which
+writes `metrics.disabled: true` to `~/.config/bd/config.yaml`. That is per
+machine, not per repository, and it is the one thing dotdiw changes outside the
+repository. Nothing already pushed into a repository's history is touched by
+any version.
 
 ## Correction
 
