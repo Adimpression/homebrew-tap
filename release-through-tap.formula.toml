@@ -7,7 +7,7 @@ examples = [
   "Update the url and the sha256 for the release",
   "Release through the tap",
 ]
-version = 3
+version = 4
 type = "workflow"
 
 # The order here is not cosmetic. A tap has no staging: Homebrew reads the
@@ -48,9 +48,15 @@ id = "audit"
 title = "Run `brew audit --strict --online --formula ./Formula/<name>.rb` and fix what it reports"
 needs = ["edit"]
 
+# 2026-11-01, Homebrew 7.0.11: `brew install ./Formula/<name>.rb` is refused
+# ("Homebrew requires formulae to be in a tap"), and a third-party tap must be
+# trusted once per machine or nothing from it loads. The working copy is tested
+# by copying its formula into Homebrew's own clone of this tap, which is a
+# separate checkout, and installing through the tap's name; the clone is put
+# back with git checkout before `brew update` pulls the real commit.
 [[steps]]
 id = "install"
-title = "Uninstall any existing copy and install from the local file, not through the tap, so that what you are testing is this working copy"
+title = "Uninstall any existing copy and install this working copy's formula: copy Formula/<name>.rb into `$(brew --repository adimpression/tap)/Formula/`, then `brew install adimpression/tap/<name>` -- Homebrew refuses a formula given as a file, and needs `brew trust adimpression/tap` once per machine first"
 needs = ["edit"]
 
 [[steps]]
@@ -70,5 +76,5 @@ needs = ["commit"]
 
 [[steps]]
 id = "verify"
-title = "From a clean state, install through the tap itself rather than the local file, to prove the published path works and not just the copy on your disk"
+title = "Put Homebrew's clone of the tap back (`git -C $(brew --repository adimpression/tap) checkout -- Formula/<name>.rb`), then from a clean state `brew uninstall`, `brew update` and install through the tap itself, to prove the published path works and not just the copy on your disk"
 needs = ["push"]
