@@ -4,6 +4,14 @@
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 0.4.1
+
+What dotdiw prints names the tracker and never the tool underneath it: the
+line when the tracker is missing is the install command above; the metrics
+notice names the tracker and the file it changed; `--version` reports the
+tracker's version as a number. What dotdiw does, writes and runs is
+unchanged, so nothing is asked of you on upgrade.
+
 ## dotdiw 0.4.0
 
 The tracker's state leaves the repository. `dotdiw init` writes one line into
