@@ -3,13 +3,13 @@ class Dotdiw < Formula
 
   desc "Workflow discovery: the procedure that applies surfaces when work starts"
   homepage "https://github.com/Adimpression/dotdiw"
-  # Verified 2026-11-01 from this working copy: the sha256 was computed from
-  # the downloaded tag tarball, brew fetched it against that sum, `brew test`
+  # Verified 2026-11-01 from this working copy, after the tag was moved to the
+  # rebuilt main: the sha256 was computed from the downloaded tag tarball, brew fetched it against that sum, `brew test`
   # passed, the shebang was rewritten to the keg's python@3.12, and the keg's
   # dotdiw adopted a throwaway repository in bd's stealth mode on a fresh
   # HOME: no commit by bd, nothing of bd's tracked, nothing global written.
   url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v0.3.0.tar.gz"
-  sha256 "9a32f8681a5318cbd44162301c03cf7b4b1a265b1540f0288679b30ec83d1756"
+  sha256 "55a8bc06a75a3bc86e2e7e1c6eae98936b69470954ece9a13493c46c1e9c787f"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 
