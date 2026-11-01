@@ -7,7 +7,7 @@ examples = [
   "Update the url and the sha256 for the release",
   "Release through the tap",
 ]
-version = 1
+version = 2
 type = "workflow"
 
 # The order here is not cosmetic. A tap has no staging: Homebrew reads the
@@ -30,6 +30,10 @@ id = "edit"
 title = "Change the url and the sha256 in one edit, together with any dependency that moved -- a url bumped without its checksum installs the wrong tarball or refuses to install at all"
 needs = ["tarball"]
 
+# 2026-11-01: on the release machine `brew audit` installed rubygems into
+# Homebrew's vendored portable Ruby and every brew command crashed until the
+# gem was removed by hand. The step was skipped for the 0.2.0 release;
+# install, `brew test` and running the tool out of the keg covered the formula.
 [[steps]]
 id = "audit"
 title = "Run `brew audit --strict --online --formula ./Formula/<name>.rb` and fix what it reports"
