@@ -9,8 +9,8 @@ class Dotdiw < Formula
   # dotdiw adopted a throwaway repository on a fresh HOME: the key in its
   # .git/config, the tracker under ~/.dotdiw, nothing of the tracker's in the
   # tree, and `--version` naming the tracker by number only.
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v0.4.1.tar.gz"
-  sha256 "aaac92dcad2ddc3f32053f9651452405e6f48ed99cbe6e3ab45466e37c13775d"
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v0.5.0.tar.gz"
+  sha256 "f5aecd667b974ddaa8b6e48bcb9a70aaa68fab50d26bea5827b4f886dc3ac12a"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 

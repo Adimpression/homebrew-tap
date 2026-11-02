@@ -1,8 +1,23 @@
 # homebrew-tap
 
+A Homebrew tap. Every tool in it installs as
+`brew install adimpression/tap/<name>` and upgrades with `brew upgrade <name>`.
+Each tool has a section below: its install line, then a notice per version,
+newest first.
+
+## dotdiw
+
     brew install adimpression/tap/dotdiw
 
 Already installed from this tap: `brew upgrade dotdiw`.
+
+## dotdiw 0.5.0
+
+Every operation is now invoked through one door generated from dotdiw's
+operation IDL, and no body writes to the terminal; the command line shows
+each response as its operation returns. What dotdiw prints, writes and runs
+is unchanged, seventeen commands byte for byte against 0.4.1, so nothing is
+asked of you on upgrade.
 
 ## dotdiw 0.4.1
 
