@@ -11,6 +11,27 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 0.6.0
+
+You can now choose which tracker dotdiw works on, and nothing changes unless
+you do. A checkout already adopted stays on its tracker. dotdiw records that
+in `.git/config` and says so once. After that, twenty commands print the same
+bytes as 0.5.0, so nothing is asked of you on upgrade. `--version` now names
+the tracker.
+
+A checkout adopted from now on uses `local`: one sqlite file under
+`~/.dotdiw/<key>/`, with nothing to install and nothing running. Besides
+dotdiw's own commands it answers `list`, `ready`, `show`, `close`, `update`
+and `dep add`, and refuses anything else by name. `dotdiw init --tracker beads`
+adopts on beads instead.
+
+`dotdiw tracker list` names the trackers. `dotdiw tracker use <name>` switches
+a checkout and leaves its work where it is. `dotdiw tracker migrate <from> <to>`
+moves the work, with its statuses, needs and close reasons but not its
+descriptions, and never writes to the source.
+
+This formula still installs beads. 0.7.0 makes it optional.
+
 ## dotdiw 0.5.0
 
 Every operation is now invoked through one door generated from dotdiw's
