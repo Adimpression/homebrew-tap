@@ -7,7 +7,7 @@ examples = [
   "Update the url and the sha256 for the release",
   "Release through the tap",
 ]
-version = 4
+version = 5
 type = "workflow"
 
 # The order here is not cosmetic. A tap has no staging: Homebrew reads the
@@ -16,10 +16,10 @@ type = "workflow"
 # A release changes what the tool does and therefore what it promises. dotdiw
 # writes its promise down (product.yaml, praxis.yaml, poa/, contracts/) and has
 # a formula that re-derives and checks all of it against the program; it runs
-# before the tag exists, because after the tag there is nothing to fix.
+# before the pull request is pushed, while a fix can still go in that pull request.
 [[steps]]
 id = "promise"
-title = "In the tool's own repository, run its promise check before anything is tagged -- for dotdiw: `dotdiw mol pour mol-check-promise-artifacts` and follow it through, both test suites included -- and amend the model, the IDL patches or the README where the release changed what the tool does"
+title = "In the tool's own repository, run its promise check before the pull request the release ships from is pushed, never after the merge -- for dotdiw: `dotdiw mol pour mol-check-promise-artifacts` and follow it through, every test suite included -- and amend the model, the IDL patches or the README in that pull request where the release changed what the tool does. Run it again only if `git rev-parse HEAD^{tree}` on the merge differs from the tree that passed"
 
 [[steps]]
 id = "tag"
@@ -76,5 +76,5 @@ needs = ["commit"]
 
 [[steps]]
 id = "verify"
-title = "Put Homebrew's clone of the tap back (`git -C $(brew --repository adimpression/tap) checkout -- Formula/<name>.rb`), then from a clean state `brew uninstall`, `brew update` and install through the tap itself, to prove the published path works and not just the copy on your disk"
+title = "Put Homebrew's clone of the tap back (`git -C $(brew --repository adimpression/tap) checkout -- Formula/<name>.rb`), then from a clean state `brew uninstall`, `brew update` and install through the tap itself, to prove the published path works and not just the copy on your disk. `brew update` and the install can move the tool's dependencies, so read which versions they left with `brew list --versions` and run the tool against those -- for dotdiw, `dotdiw tracker check` on every adapter"
 needs = ["push"]
