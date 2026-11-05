@@ -11,6 +11,35 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 0.7.0
+
+This formula no longer installs beads, as the 0.6.0 notice said it would. A
+checkout on `local` needs nothing else.
+
+If you keep a checkout on beads, run `brew install beads` once. Homebrew answers
+that it is already installed, and from then on keeps it. Without that, `brew
+upgrade dotdiw` leaves beads installed, but if it came only as dotdiw's
+dependency, Homebrew can remove it later, at a periodic cleanup or on `brew
+autoremove`. If it goes, that checkout's commands say `dotdiw: beads is not
+installed. Run: brew install beads` and exit 127, and the work is there once
+beads is back. Under beads, twenty commands print the same bytes as 0.6.0, apart
+from the tracker paragraph of `dotdiw learn`.
+
+A tracker can now ship as a package named `dotdiw-tracker-<name>`, which installs
+one file under `share/dotdiw/trackers/`. `dotdiw tracker new <name>` writes the
+file to start from, and `dotdiw tracker check ./<name>.py` checks it without
+installing it. Compatible means ten of ten. `trackers/README.md` in dotdiw's
+repository gives the steps. A tracker's code runs with your rights whenever
+dotdiw loads it, and `dotdiw tracker list` loads every one it finds.
+`dotdiw-tracker-jira`, at the end of this file, is the first.
+
+Fixed since 0.6.0: `tracker check` could write into the checkout it ran from. A
+module that called `sys.exit()` ended the command with no output and exit 0.
+`init` went on declaring the conventions after a tracker failed to open. `tracker
+use` reported a choice it could not write. Under `local`, a failed `create`
+printed nothing, `update -p` with a word gave a traceback, and a second open took
+a new prefix.
+
 ## dotdiw 0.6.0
 
 You can now choose which tracker dotdiw works on, and nothing changes unless
@@ -118,3 +147,20 @@ someone else's project; it was published without being tested. `bd init` copies
 the hooks already in `.git/hooks` into its own directory, so hooks that existed
 when the repository was adopted kept running. What was skipped was any hook
 added afterwards, until the override was removed.
+
+## dotdiw-tracker-jira
+
+    brew install adimpression/tap/dotdiw adimpression/tap/dotdiw-tracker-jira
+
+A dotdiw tracker that keeps a checkout's work in a Jira Cloud project. Name both
+packages: Homebrew loads a dependency from a tap only if that formula is trusted,
+and naming a formula in `brew install` trusts it.
+
+It reads `JIRA_SITE`, `JIRA_EMAIL` and `JIRA_API_TOKEN` from the environment or
+from `~/.dotdiw/trackers/jira.json`. `dotdiw init --tracker jira --prefix PROJ`
+then sends a checkout's work to project PROJ.
+
+It passes ten of ten against a stub of Jira's API in dotdiw's tests. It has not
+yet run against a live Jira site.
+
+Jira is a registered trademark of Atlassian Pty Ltd.

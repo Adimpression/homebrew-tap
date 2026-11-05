@@ -6,17 +6,17 @@ class Dotdiw < Formula
   # Verified 2026-11-05 from this working copy: the sha256 was computed from
   # the downloaded tag tarball, brew fetched it against that sum, `brew test`
   # passed, the shebang was rewritten to the keg's python@3.12, and the keg's
-  # dotdiw adopted a throwaway repository on a fresh HOME: the key in its
-  # .git/config, the tracker under ~/.dotdiw, nothing of the tracker's in the
-  # tree, and `--version` naming the tracker with its number.
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v0.6.0.tar.gz"
-  sha256 "09a7301d2730d676719ae5c9e352cf6a6b8094d9bd6163f42052d83323283fd0"
+  # dotdiw, with no bd on its PATH, adopted a throwaway repository on a fresh
+  # HOME: the key in its .git/config, the tracker under ~/.dotdiw, nothing of
+  # the tracker's in the tree, and `--version` naming the tracker with its
+  # number.
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v0.7.0.tar.gz"
+  sha256 "0e5c5a227728aa8795e3f379b5a2a5c81e9d56869569346a8a4560e1c910b86f"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 
   # Day 0 installs what dotdiw depends on. A prerequisite the newcomer installs
   # themselves is a per-project step in disguise.
-  depends_on "beads"
   depends_on "git"
   depends_on "python@3.12"
 
