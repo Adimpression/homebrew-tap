@@ -11,6 +11,21 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 1.1.0
+
+dotdiw works as 1.0.0 does: every command, every tracker and every file it
+writes are the same. What changed is how dotdiw holds itself to its promise.
+Each of its operations now declares, in its POA model, what it takes, what it
+returns, what it calls and the git and beads commands it runs, and the
+operation IDL is built from that model alone.
+
+The formula management abstraction is planned and recorded in dotdiw's
+promise: providers registered under a name, keeping formulas on a file system
+or behind an API endpoint, each formula carrying its provider's name as a
+suffix. Its implementation is a later release.
+
+dotdiw-tracker-jira stays at 1.0.0 and works with 1.1.0.
+
 ## dotdiw 1.0.0
 
 `dotdiw formula pour <id>` creates a formula's steps as tracked items, and

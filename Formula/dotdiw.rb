@@ -10,8 +10,8 @@ class Dotdiw < Formula
   # HOME: the key in its .git/config, the tracker under ~/.dotdiw, nothing of
   # the tracker's in the tree, and `--version` naming the tracker with its
   # number.
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "4e90160efbbf7307ee8a9972df849dec600e621b2ccbfe8b8e0b3e2ca8ceb8c2"
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v1.1.0.tar.gz"
+  sha256 "9e30d33de910d040acb955dab79120cd811203287fd836f778ebc75403be5e0f"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 
