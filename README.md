@@ -11,6 +11,36 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 1.0.0
+
+`dotdiw formula pour <id>` creates a formula's steps as tracked items, and
+`create`, `formula list` and `learn` point to it. `mol pour` still works and
+prints the same. The instructions dotdiw writes into CLAUDE.md and AGENTS.md
+keep 0.7.0's text, so a team on mixed versions writes the same files.
+
+A formula can name the means to prove its run in a list called `verify-using`:
+a command after `run:`, a file in a repository as a `git+https://` or
+`git+ssh://` URL with its path after `#`, or a link. dotdiw shows them after a
+pour and keeps them with the root, and `dotdiw check` names any value it cannot
+read. Proving the run is the act of whoever ran it.
+
+An item's kind is root or task: a pour makes the root, and every other item is
+a task. `create -t` and `--type` no longer set a kind, and under beads a type of
+molecule is refused. A local store made before 1.0.0 reads its molecule rows as
+roots.
+
+Trackers implement interface 2, and dotdiw refuses a tracker that declares 1 in
+one line that names it. If you use Jira, upgrade both packages together:
+`brew upgrade dotdiw dotdiw-tracker-jira`. A tracker of your own needs a new
+version that declares 2, and `trackers/README.md` in dotdiw's repository says
+what it answers.
+
+A tracker can name the account it writes under. Jira confirms it from the API
+token, and `init` and `tracker use` name that account. `update -a me` assigns an
+item to it, and `show` prints the assignee under local and Jira. `tracker
+migrate` carries descriptions and the means to prove a run, and says how many
+items had an assignee, since assignees stay behind.
+
 ## dotdiw 0.7.0
 
 This formula no longer installs beads, as the 0.6.0 notice said it would. A
