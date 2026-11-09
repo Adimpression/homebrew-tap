@@ -11,6 +11,31 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 2.0.0
+
+dotdiw 2.0.0 is a breaking release. Formulas are found on the file system:
+every formula file in the checkout, committed or not, wherever it sits in the
+tree, leaving out every directory whose name starts with a dot. `dotdiw check`
+names a formula that is not committed, and one that does not parse. One
+sentence of the conventions dotdiw writes into CLAUDE.md and AGENTS.md changes
+to say an uncommitted formula is found on its holder's file system alone, so a
+team on mixed versions rewrites it until everyone runs 2.0.0.
+
+Formulas kept elsewhere come through a formula management provider.
+`dotdiw formula provider register <name> <module> [--at <location>]` registers
+one under a name of letters and digits, and every formula it serves carries
+that name as a suffix after a hyphen, as in `mol-cut-release-acme`. dotdiw
+ships one provider, `directory`, for a directory of formula files outside any
+checkout. `formula provider list` and `remove` complete it, and
+`formula-providers/README.md` in dotdiw's repository says how to write another.
+
+An id names a formula before any path or file name, and an id two formulas
+share is refused rather than poured. Under beads, a pour cooks the formula's
+file as it reads at that moment, or fails, and never pours a copy bd held from
+before.
+
+dotdiw-tracker-jira stays at 1.0.0 and works with 2.0.0.
+
 ## dotdiw 1.1.0
 
 dotdiw works as 1.0.0 does: every command, every tracker and every file it
