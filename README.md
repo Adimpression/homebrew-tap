@@ -11,6 +11,33 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 3.0.0
+
+dotdiw 3.0.0 is a breaking release. A checkout an earlier version adopted
+is brought up to date by `dotdiw init`, once: until then every other command
+but `learn` and `--version` says so in one line and changes nothing. init
+moves the means to prove a run, which earlier versions kept at the end of
+each description, into a column of the local store or the issue's beads
+metadata, so every description reads back exactly as it was written.
+
+create, formula pour and init read dotdiw's own flags. create takes one
+title, `-p`, `--parent`, `-d`, `--json` and `-q`; formula pour takes `--json`;
+init takes `--prefix` and `--tracker`. Any other flag is refused in one line,
+and a flag of bd's own create is set afterwards through `dotdiw update`.
+
+Under beads, a pour makes its root and its steps itself, in the formula's
+order, from the formula as its lookup read it. bd's cook is no longer part of
+a pour, and the pour lock is gone.
+
+Trackers and formula management providers carry data alone. A tracker adapter
+written for tracker interface 2, or a provider module written for 2.0.0, is
+refused in one line naming it; `trackers/README.md` and
+`formula-providers/README.md` in dotdiw's repository say how to write one for
+3.0.0.
+
+dotdiw-tracker-jira moves to 3.0.0. It is written for tracker interface 3,
+which dotdiw 3.0.0 answers.
+
 ## dotdiw 2.0.0
 
 dotdiw 2.0.0 is a breaking release. Formulas are found on the file system:
