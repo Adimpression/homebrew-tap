@@ -3,15 +3,16 @@ class Dotdiw < Formula
 
   desc "Workflow discovery: the procedure that applies surfaces when work starts"
   homepage "https://github.com/Adimpression/dotdiw"
-  # Verified 2026-11-10 from this working copy: the sha256 was computed from
+  # Verified 2026-11-13 from this working copy: the sha256 was computed from
   # the downloaded tag tarball, brew fetched it against that sum, `brew test`
   # passed, the shebang was rewritten to the keg's python@3.12, and the keg's
   # dotdiw, with no bd on its PATH, adopted a throwaway repository on a fresh
   # HOME: the key in its .git/config, the tracker under ~/.dotdiw, nothing of
   # the tracker's in the tree, and `--version` naming the tracker with its
-  # number.
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v3.0.0.tar.gz"
-  sha256 "39a5b42ff9d056306b9e7bd977fde57c475663d52db9161fc6ebdebd9e9b177e"
+  # number. Through the keg, a claimed step's values were recorded and read
+  # back on the local store and on a stub of Jira.
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v4.0.0.tar.gz"
+  sha256 "f7f5f0e9895010dc94736c149561ae5a83543294957f192b090618f0f886644a"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 

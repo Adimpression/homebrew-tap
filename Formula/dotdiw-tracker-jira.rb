@@ -1,8 +1,8 @@
 class DotdiwTrackerJira < Formula
   desc "Jira Cloud tracker adapter for dotdiw"
   homepage "https://github.com/Adimpression/dotdiw"
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v3.0.0.tar.gz"
-  sha256 "39a5b42ff9d056306b9e7bd977fde57c475663d52db9161fc6ebdebd9e9b177e"
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v4.0.0.tar.gz"
+  sha256 "f7f5f0e9895010dc94736c149561ae5a83543294957f192b090618f0f886644a"
   license "Apache-2.0"
 
   depends_on "adimpression/tap/dotdiw"

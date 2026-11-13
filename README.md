@@ -11,6 +11,36 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 4.0.0
+
+dotdiw 4.0.0 is a breaking release. A checkout 3.0.0 adopted on the local
+store, whose store has no place for a step's claim, is brought up to date by
+`dotdiw init`, once: until then every other command but `learn` and
+`--version` says so in one line and changes nothing. One on beads goes on as it
+was.
+
+A formula step may declare a claim: a statement with a `{{ label }}`
+placeholder for each slot it declares. A pour names each claimed step and
+prints the command that records it; `dotdiw claim <id> 'label: value'` records
+the values on that step and prints the run, each claim filled from its own
+values and the root's `verify-using` filled from them. Under beads, `dotdiw
+claim` reads a run back but records no values in this release, and says so.
+
+A run's root stays open while a step poured in its run is open, wherever that
+step stands, and closes with the last of them; dotdiw refuses a parent or a
+need that would leave a run unable to close. Under beads, dotdiw refuses by
+name the tracker's commands whose closes or waits it cannot check against a
+run's steps before they run -- a batch, raw SQL, an import, a duplicate, a
+delete, and the like. create, claim, formula pour, init and check take `--help`
+and `-h`.
+
+Trackers carry each poured step's claim, values and run. A tracker adapter
+written for tracker interface 3 is refused in one line naming it;
+`trackers/README.md` in dotdiw's repository says how to write one for 4.0.0.
+
+dotdiw-tracker-jira moves to 4.0.0. It is written for tracker interface 4,
+which dotdiw 4.0.0 answers, so upgrade the two together.
+
 ## dotdiw 3.0.0
 
 dotdiw 3.0.0 is a breaking release. A checkout an earlier version adopted
@@ -257,7 +287,7 @@ It reads `JIRA_SITE`, `JIRA_EMAIL` and `JIRA_API_TOKEN` from the environment or
 from `~/.dotdiw/trackers/jira.json`. `dotdiw init --tracker jira --prefix PROJ`
 then sends a checkout's work to project PROJ.
 
-It passes ten of ten against a stub of Jira's API in dotdiw's tests. It has not
+It passes eleven of eleven against a stub of Jira's API in dotdiw's tests. It has not
 yet run against a live Jira site.
 
 Jira is a registered trademark of Atlassian Pty Ltd.
