@@ -3,16 +3,15 @@ class Dotdiw < Formula
 
   desc "Workflow discovery: the procedure that applies surfaces when work starts"
   homepage "https://github.com/Adimpression/dotdiw"
-  # Verified 2026-11-13 from this working copy: the sha256 was computed from
+  # Verified 2026-11-18 from this working copy: the sha256 was computed from
   # the downloaded tag tarball, brew fetched it against that sum, `brew test`
   # passed, the shebang was rewritten to the keg's python@3.12, and the keg's
-  # dotdiw, with no bd on its PATH, adopted a throwaway repository on a fresh
-  # HOME: the key in its .git/config, the tracker under ~/.dotdiw, nothing of
-  # the tracker's in the tree, and `--version` naming the tracker with its
-  # number. Through the keg, a claimed step's values were recorded and read
-  # back on the local store and on a stub of Jira.
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v4.0.0.tar.gz"
-  sha256 "f7f5f0e9895010dc94736c149561ae5a83543294957f192b090618f0f886644a"
+  # dotdiw passed `tracker check` on the local store and on a stub of Jira
+  # with no bd on its PATH, and on beads with bd. A checkout 4.0.0 adopted on
+  # local kept its items and closed one, and every item in `--json` carried
+  # its etag. `serve`, without grpcio, said so in one line.
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v4.1.0.tar.gz"
+  sha256 "e53f9ff7ccd97d72df14275d42a423928b009edadc7f6ef40baa978685c1b788"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 

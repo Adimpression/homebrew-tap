@@ -11,6 +11,21 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 4.1.0
+
+dotdiw 4.1.0 lets clients that are not a terminal call dotdiw at once.
+`dotdiw serve` serves dotdiw's operations over gRPC, on 127.0.0.1:50051 or
+the address given. It needs grpcio and protobuf, which this formula does not
+install; without them it says so in one line. Nothing else in dotdiw needs
+them.
+
+Every item a read answers carries an ETag, `etag` in `--json`, and a write
+given the ETags it rests on takes effect only while they still hold. A write
+given none is unconditional, as before. A checkout 4.0.0 adopted goes on as
+it was.
+
+dotdiw-tracker-jira moves to 4.1.0 with it. The tracker interface stays 4.
+
 ## dotdiw 4.0.0
 
 dotdiw 4.0.0 is a breaking release. A checkout 3.0.0 adopted on the local
