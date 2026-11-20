@@ -3,15 +3,16 @@ class Dotdiw < Formula
 
   desc "Workflow discovery: the procedure that applies surfaces when work starts"
   homepage "https://github.com/Adimpression/dotdiw"
-  # Verified 2026-11-18 from this working copy: the sha256 was computed from
+  # Verified 2026-11-20 from this working copy: the sha256 was computed from
   # the downloaded tag tarball, brew fetched it against that sum, `brew test`
   # passed, the shebang was rewritten to the keg's python@3.12, and the keg's
   # dotdiw passed `tracker check` on the local store and on a stub of Jira
-  # with no bd on its PATH, and on beads with bd. A checkout 4.0.0 adopted on
-  # local kept its items and closed one, and every item in `--json` carried
-  # its etag. `serve`, without grpcio, said so in one line.
-  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v4.1.0.tar.gz"
-  sha256 "e53f9ff7ccd97d72df14275d42a423928b009edadc7f6ef40baa978685c1b788"
+  # with no bd on its PATH, and on beads with bd. A formula whose step calls
+  # a formula poured as one run on local and on beads, its calling step closed
+  # once its call's steps had, and a claim's values were recorded under both.
+  # A checkout 4.0.0 adopted on local still listed its item.
+  url "https://github.com/Adimpression/dotdiw/archive/refs/tags/v4.2.0.tar.gz"
+  sha256 "ca37b18fe2600dc7409572bda788412d7b79b4f93017d4908f1a733740c6591a"
   license "Apache-2.0"
   head "https://github.com/Adimpression/dotdiw.git", branch: "main"
 

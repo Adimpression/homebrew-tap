@@ -11,6 +11,32 @@ newest first.
 
 Already installed from this tap: `brew upgrade dotdiw`.
 
+## dotdiw 4.2.0
+
+dotdiw 4.2.0 lets a formula's step call one formula instead of repeating its
+steps: `formula = "<ref>"` on the step, named as `dotdiw formula pour` names
+one. The pour pours that formula's steps within the calling step, in the same
+run, so the whole job is one run under one root: the calling step's needs hold
+back its call, the calling step waits on the call and closes itself once it
+is done, and each call keeps its own claims and verify-using. Every call is
+resolved before anything is written, and what was resolved is poured.
+
+Under beads and Jira a pour of calls is written one item at a time, so it is
+held on a guard: one more item, `Pour of <formula>`, which the pour closes
+last. A pour cut short stays held: nothing of it is given ready and its root
+does not close, and the refusal names the guard and what to do. While one is
+held under beads, bd's own `ready` runs only where its answer names nothing
+held, and a close that takes the next item (`--claim-next`, `--continue`,
+`--suggest-next`) is refused. bd's `human respond` and `human dismiss`, which
+close an item without a close's checks, no longer run through dotdiw.
+
+Under beads, `dotdiw claim` now records a claim's values on the step's own
+issue, where it declined them before.
+
+The tracker interface stays 4. An adapter says it pours calls with
+`"nests": True`; local, beads and dotdiw-tracker-jira do, and dotdiw pours no
+call into one that does not. dotdiw-tracker-jira moves to 4.2.0 with it.
+
 ## dotdiw 4.1.0
 
 dotdiw 4.1.0 lets clients that are not a terminal call dotdiw at once.
